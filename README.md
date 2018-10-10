@@ -26,7 +26,7 @@ Para rodar este servidor é preciso primeiro configurar duas coisas:
 ## Iniciando o servidor
 1. Navegue até a pasta deste projeto.
 
-2. Execute o comando ```npm run start```.
+2. Execute o comando ```npm run start``` ou ```node server.js``` (o primero comando não funcionou num Mac).
 
 3. O servidor REST deve ter sido iniciado escutando na porta 3000. Acesse ele pelo link http://localhost:3000 e boa sorte.
 
@@ -38,6 +38,7 @@ Para rodar este servidor é preciso primeiro configurar duas coisas:
 
 #### /vaga/{id} - GET
 > Retorna JSON contendo a vaga com o id consultado. Lembrando que id das vagas é feito pela concatenação do andar e do número da vaga.
+> Retorna a string "ERRO: Vaga inexistente" caso a vaga não exista.
 
 #### /vaga/desocupada/quantidade/ - GET
 > Retorna o número de vagas desocupadas.
@@ -50,19 +51,21 @@ Para rodar este servidor é preciso primeiro configurar duas coisas:
 
 #### /vaga/tempo/{id} - GET
 > Retorna número de minutos desde que a vaga foi ocupada ou desocupada pela última vez.
-> Para saber se a vaga está ocupada ou não, realize outra consulta.
-
+> Retorna a string "ERRO: Vaga desocupada" caso a vaga esteja desocupada.
 
 ## Sensor de vaga
 #### /vaga/ - POST
 > Cadastra uma nova vaga (a ser usado quando uma vaga for criada). É necessário informar o andar e número da vaga para criar uma vaga.
+> Retorna a string "ERRO: Vaga repetida" caso uma vaga com mesmo número e andar já exista.
 
 #### /vaga/{id} - DELETE
 > Remove uma vaga existente (a ser usado quando uma vaga for desativada).
 
 #### /vaga/ocupar/{id} - POST
 > Ocupa uma vaga. Não há verificação no servidor se a vaga já está ocupada.
+> Retorna a string "ERRO: Vaga já ocupada" caso a vaga já esteja ocupada.
 
 #### /vaga/desocupar/{id} - POST
 > Desocupa uma vaga. Não há verificação no servidor se a vaga já está desocupada.
+> Retorna a string "ERRO: Vaga já desocupada" caso a vaga já esteja desocupada.
 
