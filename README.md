@@ -36,6 +36,9 @@ Para rodar este servidor é preciso primeiro configurar duas coisas:
 #### /vaga - GET
 > Retorna JSON contendo todas as vagas registradas no sistema.
 
+#### /vaga/{id} - GET
+> Retorna JSON contendo a vaga com o id consultado. Lembrando que id das vagas é feito pela concatenação do andar e do número da vaga.
+
 #### /vaga/desocupada/quantidade/ - GET
 > Retorna o número de vagas desocupadas.
 
@@ -52,14 +55,14 @@ Para rodar este servidor é preciso primeiro configurar duas coisas:
 
 ## Sensor de vaga
 #### /vaga/ - POST
-> Cadastra uma nova vaga (a ser usado quando uma vaga for criada).
+> Cadastra uma nova vaga (a ser usado quando uma vaga for criada). É necessário informar o andar e número da vaga para criar uma vaga.
 
 #### /vaga/{id} - DELETE
 > Remove uma vaga existente (a ser usado quando uma vaga for desativada).
 
-#### /vaga/ocupar/{id}
-> Ocupa uma vaga.
+#### /vaga/ocupar/{id} - POST
+> Ocupa uma vaga. Não há verificação no servidor se a vaga já está ocupada.
 
-#### /vaga/desocupar/{id}
-> Desocupa uma vaga.
+#### /vaga/desocupar/{id} - POST
+> Desocupa uma vaga. Não há verificação no servidor se a vaga já está desocupada.
 
